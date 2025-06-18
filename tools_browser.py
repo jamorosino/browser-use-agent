@@ -1,13 +1,20 @@
 from playwright.sync_api import sync_playwright
-import json
 import os
-
-import subprocess, shutil, hashlib  # (existing imports are fine)
-from playwright.sync_api import sync_playwright
+import subprocess
+import shutil
 import urllib.parse
 
 # --- ensure the browser binary is present ---
-subprocess.run(["playwright", "install", "chromium", "--with-deps"], check=False)
+# Attempt to install the browser runtime if the `playwright` command is
+# available. This is skipped during unit tests where the command may not
+# exist.
+if shutil.which("playwright"):
+    subprocess.run([
+        "playwright",
+        "install",
+        "chromium",
+        "--with-deps",
+    ], check=False)
 
 # ---------- launch ----------
 _pw = sync_playwright().start()
