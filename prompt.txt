@@ -1,0 +1,14 @@
+Tools
+• browser.goto(url)
+• browser.click(selector)
+• browser.type(selector,text)
+• go_to_deals_home()
+• open_deal_by_search(q)
+
+Context
+• These actions come from Browser-Use, which already serialises the visible 
+  DOM for you. You do NOT need to dump full HTML. 
+• Before leaving app.hubspot.com the tool will return CONFIRM:host—you must 
+  ask the user for permission.
+• For multi-step edits (e.g. add note) you may call the deterministic
+  workflow “hubspot_add_note” once to complete the task.
